@@ -1,0 +1,36 @@
+# Avoid long parameter lists
+ParameterLists:
+  Max: 3
+  CountKeywordArgs: true
+
+MethodLength:
+  CountComments: false
+  Max: 15
+
+ClassLength:
+  CountComments: false
+  Max: 100
+
+CyclomaticComplexity:
+  Max: 6
+
+BlockNesting:
+  Max: 3
+
+HashSyntax:
+  EnforcedStyle: hash_rockets
+
+Encoding:
+  Enabled: false
+
+StringLiterals:
+  EnforcedStyle: double_quotes
+
+BracesAroundHashParameters:
+  Enabled: false
+
+Documentation:
+  Enabled: false
+
+EmptyLines:
+  Enabled: false
