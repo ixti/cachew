@@ -1,5 +1,10 @@
 # Cachew
 
+[![Gem Version](https://badge.fury.io/rb/cachew.png)](http://badge.fury.io/rb/cachew)
+[![Build Status](https://travis-ci.org/ixti/cachew.png?branch=master)](https://travis-ci.org/ixti/cachew)
+[![Coverage Status](https://coveralls.io/repos/ixti/cachew/badge.png?branch=master)](https://coveralls.io/r/ixti/cachew?branch=master)
+[![Code Climate](https://codeclimate.com/github/ixti/cachew.png)](https://codeclimate.com/github/ixti/cachew)
+
 Simple (and unified) cache interface.
 
 ## Installation
