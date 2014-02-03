@@ -16,6 +16,13 @@ describe Cachew::Adapters do
       end
     end
 
+    context "with instance of Cachew" do
+      it "returns original #adapter" do
+        original = Cachew.new :foo => :bar
+        expect(Cachew.new(original).adapter).to be original.adapter
+      end
+    end
+
     it "returns NullAdapter if can't find better candidate" do
       expect(described_class.build_adapter_for "test")
         .to be_a Cachew::Adapters::NullAdapter

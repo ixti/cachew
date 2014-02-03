@@ -7,6 +7,7 @@ class Cachew
     def self.build_adapter_for(store)
       case store
       when BaseAdapter  then store
+      when Cachew       then store.adapter
       when Hash         then HashAdapter.new(store)
       else                   NullAdapter.new
       end
