@@ -5,6 +5,8 @@
 [![Coverage Status](https://coveralls.io/repos/ixti/cachew/badge.png?branch=master)](https://coveralls.io/r/ixti/cachew?branch=master)
 [![Code Climate](https://codeclimate.com/github/ixti/cachew.png)](https://codeclimate.com/github/ixti/cachew)
 
+**DISCONTINUED**
+
 Simple (and unified) cache interface.
 
 ## Installation
