@@ -1,5 +1,4 @@
-require "digest/md5"
-require "json"
+require "digest/sha1"
 
 module Cachew
   # Base class for Cachew adapters.
@@ -72,7 +71,7 @@ module Cachew
 
     # :nodoc:
     def __key__(*args)
-      Digest::MD5.hexdigest JSON.dump args
+      Digest::SHA1.hexdigest Marshal.dump args
     end
   end
 end
