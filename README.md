@@ -24,24 +24,57 @@ Or install it yourself as:
 ## Usage
 
 ``` ruby
-# With HashAdapter
-cache = Cachew.new({})
+# In-memory Hash
+cache = Cachew::Hash.new
 
-cache.has?(:foo)           # => false
-cache.fetch(:foo) { :bar } # => :bar
+cache.fetch(:foo) { Time.now.to_i } # => 1405724687
+cache.fetch(:foo) { Time.now.to_i } # => 1405724687
 
-cache.has?(:foo)           # => true
-cache.fetch(:foo) { :moo } # => :bar
+# With ttl
+cache.fetch(:foo, :ttl => 10) { Time.now.to_i } # => 1405724689
 
+# Before 10 seconds will expire
+cache.fetch(:foo, :ttl => 10) { Time.now.to_i } # => 1405724689
 
-# With (default) NullAdapter
-cache = Cachew.new
+# Once 10+ seconds pass
+cache.fetch(:foo, :ttl => 10) { Time.now.to_i } # => 1405724695
 
-cache.has?(:foo)           # => false
-cache.fetch(:foo) { :bar } # => :bar
+# Withot cache (think of it as NullLogger)
+cache = Cachew::Null.new
 
-cache.has?(:foo)           # => false
-cache.fetch(:foo) { :moo } # => :moo
+cache.fetch(:foo) { Time.now.to_i } # => 1405724687
+cache.fetch(:foo) { Time.now.to_i } # => 1405724688
+```
+
+You can easily write your own adapters:
+
+```
+class Cachew::Redis < Cache::Adapter
+  def initialize(client)
+    @client = client
+  end
+
+  private
+
+  def __set__(key, val, ttl)
+    val = Marshal.dump val
+
+    if 0 == ttl
+      @client.set key, val
+    else
+      @client.setex key, val, ttl
+    end
+  end
+
+  def __get__(key)
+    val = @client.get(key)
+    val ? Marshal.load(val) : UNDEFINED
+  end
+
+  def __key__(*)
+    "cachew:#{super}"
+  end
+end
 ```
 
 ## Contributing

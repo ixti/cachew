@@ -14,17 +14,38 @@ ClassLength:
 CyclomaticComplexity:
   Max: 6
 
+EmptyLineBetweenDefs:
+  AllowAdjacentOneLineDefs: true
+
 BlockNesting:
   Max: 3
 
 HashSyntax:
   EnforcedStyle: hash_rockets
 
-Encoding:
-  Enabled: false
-
 StringLiterals:
   EnforcedStyle: double_quotes
+
+AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+IndentHash:
+  EnforcedStyle: consistent
+
+PercentLiteralDelimiters:
+  PreferredDelimiters:
+    '%':  ()
+    '%i': ()
+    '%q': ()
+    '%Q': ()
+    '%r': '{}'
+    '%s': ()
+    '%w': '[]'
+    '%W': '[]'
+    '%x': ()
+
+Encoding:
+  Enabled: false
 
 BracesAroundHashParameters:
   Enabled: false
@@ -32,5 +53,22 @@ BracesAroundHashParameters:
 Documentation:
   Enabled: false
 
-EmptyLines:
+# Not all trivial readers/writers can be defined with attr_* methods
+TrivialAccessors:
   Enabled: false
+
+# New lambda syntax is UGLY, don't enforce it
+Lambda:
+  Enabled: false
+
+# Ridiculous (and IMHO useless) restriction, that makes impossible aligning
+# code like this:
+#
+#   redis.hset    :k1, now
+#   redis.hincrby :k2, 123
+SingleSpaceBeforeFirstArg:
+  Enabled: false
+
+AllCops:
+  Include:
+    - Gemfile

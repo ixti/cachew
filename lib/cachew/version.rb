@@ -1,3 +1,4 @@
-class Cachew
-  VERSION = "0.1.1"
+module Cachew
+  # Cachew version
+  VERSION = "0.2.0"
 end
